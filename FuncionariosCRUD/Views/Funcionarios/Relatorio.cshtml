@@ -1,0 +1,92 @@
+﻿<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+@model IEnumerable<FuncionariosCRUD.Models.FuncionariosModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Relatório</h1>
+
+
+<div style="text-align:end; height: 30px;">
+
+    <a asp-action="ExportToExcel" class="btn btn-primary " style="width:9%"><i class="bi bi-filetype-xlsx"></i>  Exportar</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FotoFuncionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoCivil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CTPS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataContratacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <img src="@FileLocation.RetriveFileFromFolder@item.FotoFuncionario" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoCivil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CTPS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataContratacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo)
+                </td>
+                <td>
+                    <div class="row">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning  text-white"><i class="bi bi-pencil-fill" style="color:white"></i> Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger "><i class="bi bi-trash-fill" style="color:white"></i> Excluir</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="" style="text-align:end">
+    <a asp-action="Index" class="btn  btn-primary " style="width:9%"><i class="bi bi-skip-backward-fill" style="color:white"></i> Voltar para Lista</a>
+</div>
